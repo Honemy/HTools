@@ -1,7 +1,6 @@
 package com.honemy.ht;
 
 import com.honemy.ht.exception.HtException;
-import com.honemy.ht.model.RangedValue;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -280,17 +279,6 @@ public final class Valid {
 	 */
 	public static boolean isFinite(final Vector vector) {
 		return Double.isFinite(vector.getX()) && Double.isFinite(vector.getY()) && Double.isFinite(vector.getZ());
-	}
-
-	/**
-	 * Checks if a long value is within a specified range.
-	 *
-	 * @param value  the value to check
-	 * @param ranged the range to check against
-	 * @return true if the value is within the range, false otherwise
-	 */
-	public static boolean isInRange(final long value, final RangedValue ranged) {
-		return value >= ranged.getMinLong() && value <= ranged.getMaxLong();
 	}
 
 	/**
