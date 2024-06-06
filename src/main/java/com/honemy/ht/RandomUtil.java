@@ -14,7 +14,6 @@ import java.util.stream.StreamSupport;
 /**
  * Utility class providing various random generation methods.
  */
-@SuppressWarnings("unused")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class RandomUtil {
 

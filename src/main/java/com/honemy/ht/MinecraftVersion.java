@@ -13,7 +13,6 @@ import java.util.logging.Level;
  * Class representing a Minecraft version.
  * This class provides methods for comparing and retrieving version information.
  */
-@SuppressWarnings("unused")
 public final class MinecraftVersion {
 
 	/**

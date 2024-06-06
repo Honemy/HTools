@@ -21,7 +21,6 @@ import java.util.logging.Level;
  * Abstract class representing a modern command.
  * This class extends Command and provides methods for command execution.
  */
-@SuppressWarnings("unused")
 public abstract class ModernCommand extends Command {
 
 	/**

@@ -1,137 +1,135 @@
 package com.honemy.ht;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.UtilityClass;
 import org.bukkit.command.CommandSender;
 
+import java.util.EnumMap;
+import java.util.Map;
+
+/**
+ * Utility class for sending messages with different types and prefixes.
+ */
 @UtilityClass
 public final class Messenger {
 
 	/**
-	 * The prefix send while sending info message
+	 * Enum representing different types of messages.
 	 */
-	@Setter
-	@Getter
-	private String infoPrefix = "&8&l[&9&li&8&l]&7 ";
+	public enum MessageType {
+		INFO,
+		SUCCESS,
+		WARN,
+		ERROR,
+		QUESTION,
+		ANNOUNCE
+	}
 
-	/**
-	 * The prefix send while sending success message
-	 */
-	@Setter
-	@Getter
-	private String successPrefix = "&8&l[&2&l+&8&l]&7 ";
+	// Map to store prefixes for different message types
+	private static final Map<MessageType, String> prefixes = new EnumMap<>(MessageType.class);
 
-	/**
-	 * The prefix send while sending warning message
-	 */
-	@Setter
-	@Getter
-	private String warnPrefix = "&8&l[&6&l!&8&l]&6 ";
-
-	/**
-	 * The prefix send while sending error message
-	 */
-	@Setter
-	@Getter
-	private String errorPrefix = "&8&l[&4&lX&8&l]&c ";
-
-	/**
-	 * The prefix send while sending questions
-	 */
-	@Setter
-	@Getter
-	private String questionPrefix = "&8&l[&a&l?&l&8]&7 ";
-
-	/**
-	 * The prefix send while sending announcements
-	 */
-	@Setter
-	@Getter
-	private String announcePrefix = "&8&l[&5&l!&l&8]&d ";
-
-	/**
-	 * Sends an info message to the player
-	 *
-	 * @param player  the player to send the message to
-	 * @param message the message to send
-	 */
-	public void info(final CommandSender player, final String message) {
-		tell(player, infoPrefix, message);
+	static {
+		// Initialize prefixes for each message type
+		prefixes.put(MessageType.INFO, "&8&l[&9&li&8&l]&7 ");
+		prefixes.put(MessageType.SUCCESS, "&8&l[&2&l+&8&l]&7 ");
+		prefixes.put(MessageType.WARN, "&8&l[&6&l!&8&l]&6 ");
+		prefixes.put(MessageType.ERROR, "&8&l[&4&lX&8&l]&c ");
+		prefixes.put(MessageType.QUESTION, "&8&l[&a&l?&l&8]&7 ");
+		prefixes.put(MessageType.ANNOUNCE, "&8&l[&5&l!&l&8]&d ");
 	}
 
 	/**
-	 * Sends a success message to the player
+	 * Set a new prefix for a specific message type.
 	 *
-	 * @param player  the player to send the message to
-	 * @param message the message to send
+	 * @param type   The type of the message.
+	 * @param prefix The new prefix.
 	 */
-	public void success(final CommandSender player, final String message) {
-		tell(player, successPrefix, message);
+	public void setPrefix(MessageType type, String prefix) {
+		prefixes.put(type, prefix);
 	}
 
 	/**
-	 * Sends a warning message to the player
+	 * Get the prefix for a specific message type.
 	 *
-	 * @param player  the player to send the message to
-	 * @param message the message to send
+	 * @param type The type of the message.
+	 * @return The prefix for the specified message type.
 	 */
-	public void warn(final CommandSender player, final String message) {
-		tell(player, warnPrefix, message);
+	public String getPrefix(MessageType type) {
+		return prefixes.get(type);
 	}
 
 	/**
-	 * Sends an error message to the player
+	 * Send a message of a specific type to a command sender.
 	 *
-	 * @param player   the player to send the message to
-	 * @param messages the messages to send
+	 * @param sender   The command sender to send the message to.
+	 * @param type     The type of the message.
+	 * @param messages The messages to send.
 	 */
-	public void error(final CommandSender player, final String... messages) {
-		for (final String message : messages)
-			error(player, message);
+	private void sendMessage(CommandSender sender, MessageType type, String... messages) {
+		String prefix = getPrefix(type);
+		for (String message : messages) {
+			if (message.isEmpty() || "none".equals(message))
+				continue;
+			sender.sendMessage(Common.colorize(prefix + message));
+		}
 	}
 
 	/**
-	 * Sends an error message to the player
+	 * Send an info message to a command sender.
 	 *
-	 * @param player  the player to send the message to
-	 * @param message the message to send
+	 * @param player   The command sender to send the message to.
+	 * @param messages The messages to send.
 	 */
-	public void error(final CommandSender player, final String message) {
-		tell(player, errorPrefix, message);
+	public void info(CommandSender player, String... messages) {
+		sendMessage(player, MessageType.INFO, messages);
 	}
 
 	/**
-	 * Sends a question message to the player
+	 * Send a success message to a command sender.
 	 *
-	 * @param player  the player to send the message to
-	 * @param message the message to send
+	 * @param player   The command sender to send the message to.
+	 * @param messages The messages to send.
 	 */
-	public void question(final CommandSender player, final String message) {
-		tell(player, questionPrefix, message);
+	public void success(CommandSender player, String... messages) {
+		sendMessage(player, MessageType.SUCCESS, messages);
 	}
 
 	/**
-	 * Sends an announcement message to the player
+	 * Send a warning message to a command sender.
 	 *
-	 * @param player  the player to send the message to
-	 * @param message the message to send
+	 * @param player   The command sender to send the message to.
+	 * @param messages The messages to send.
 	 */
-	public void announce(final CommandSender player, final String message) {
-		tell(player, announcePrefix, message);
+	public void warn(CommandSender player, String... messages) {
+		sendMessage(player, MessageType.WARN, messages);
 	}
 
 	/**
-	 * Sends a message to the player
+	 * Send an error message to a command sender.
 	 *
-	 * @param sender  the player to send the message to
-	 * @param prefix  the prefix to use
-	 * @param message the message to send
+	 * @param player   The command sender to send the message to.
+	 * @param messages The messages to send.
 	 */
-	private void tell(CommandSender sender, String prefix, String message) {
-		if (message.isEmpty() || "none".equals(message))
-			return;
+	public void error(CommandSender player, String... messages) {
+		sendMessage(player, MessageType.ERROR, messages);
+	}
 
-		sender.sendMessage(Common.colorize(prefix + message));
+	/**
+	 * Send a question message to a command sender.
+	 *
+	 * @param player   The command sender to send the message to.
+	 * @param messages The messages to send.
+	 */
+	public void question(CommandSender player, String... messages) {
+		sendMessage(player, MessageType.QUESTION, messages);
+	}
+
+	/**
+	 * Send an announcement message to a command sender.
+	 *
+	 * @param player   The command sender to send the message to.
+	 * @param messages The messages to send.
+	 */
+	public void announce(CommandSender player, String... messages) {
+		sendMessage(player, MessageType.ANNOUNCE, messages);
 	}
 }

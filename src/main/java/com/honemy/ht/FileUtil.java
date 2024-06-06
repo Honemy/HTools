@@ -16,7 +16,6 @@ import java.util.logging.Level;
 /**
  * Utility class for file operations.
  */
-@SuppressWarnings("unused")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class FileUtil {
 

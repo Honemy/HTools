@@ -14,7 +14,6 @@ import java.util.logging.Level;
 /**
  * Utility class for common operations.
  */
-@SuppressWarnings("unused")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Common {
 
@@ -61,7 +60,7 @@ public final class Common {
 	 * @param array The Collection of Strings to convert.
 	 * @return The converted array of Strings.
 	 */
-	public static String[] toArray(final Collection<String> array) {
+	public static String[] toArray(Collection<String> array) {
 		return array == null ? new String[0] : array.toArray(new String[0]);
 	}
 
@@ -73,7 +72,7 @@ public final class Common {
 	 * @return The converted ArrayList.
 	 */
 	@SafeVarargs
-	public static <T> ArrayList<T> toList(final T... array) {
+	public static <T> ArrayList<T> toList(T... array) {
 		return array == null ? new ArrayList<>() : new ArrayList<>(Arrays.asList(array));
 	}
 
@@ -85,7 +84,7 @@ public final class Common {
 	 * @param it The Iterable to convert.
 	 * @return The converted List.
 	 */
-	public static <T> List<T> toList(final Iterable<T> it) {
+	public static <T> List<T> toList(Iterable<T> it) {
 		final List<T> list = new ArrayList<>();
 
 		if (it != null)

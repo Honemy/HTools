@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Utility class for time-related operations.
  */
-@SuppressWarnings("unused")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class TimeUtil {
 

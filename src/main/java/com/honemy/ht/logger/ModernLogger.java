@@ -13,7 +13,6 @@ import java.util.logging.Logger;
  * This class provides methods for logging messages at different levels with optional exception information.
  * It also allows for specifying the source class and method from which the log message originates.
  */
-@SuppressWarnings("unused")
 public final class ModernLogger {
 	/**
 	 * The logger instance from Bukkit.

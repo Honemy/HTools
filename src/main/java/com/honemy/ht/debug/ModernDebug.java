@@ -2,6 +2,7 @@ package com.honemy.ht.debug;
 
 import com.honemy.ht.Common;
 import com.honemy.ht.FileUtil;
+import com.honemy.ht.TimeUtil;
 import com.honemy.ht.exception.HtException;
 import com.honemy.ht.logger.ModernLogger;
 import com.honemy.ht.plugin.ModernPlugin;
@@ -32,7 +33,7 @@ public final class ModernDebug {
 			String header = ModernPlugin.getNamed() + " " + ModernPlugin.getVersion() + " encountered " + thrown.getClass().getSimpleName();
 			String pluginsList = Arrays.toString(Bukkit.getPluginManager().getPlugins());
 
-			lines.add("----------------------------------------------------------------------------------------------");
+			lines.add("------------------------------------[ " + TimeUtil.getFormattedDate() + " ]-----------------------------------");
 			lines.add(header);
 			lines.add(systemInfo);
 			lines.add("Plugins: " + pluginsList);

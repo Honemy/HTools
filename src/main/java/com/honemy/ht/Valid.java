@@ -9,7 +9,6 @@ import org.bukkit.util.Vector;
 import java.util.*;
 import java.util.regex.Pattern;
 
-@SuppressWarnings("unused")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Valid {
 

@@ -17,7 +17,6 @@ import java.util.logging.Level;
  * Abstract class representing a modern plugin.
  * This class extends JavaPlugin and implements Listener.
  */
-@SuppressWarnings("unused")
 public abstract class ModernPlugin extends JavaPlugin implements Listener {
 
 	/**
