@@ -80,6 +80,11 @@ public abstract class ModernCommand extends Command {
 		}
 	}
 
+	/**
+	 * Checks if the command sender is a player.
+	 *
+	 * @throws CommandException if the sender is a player.
+	 */
 	protected final boolean isPlayer() {
 		return this.sender instanceof Player;
 	}
