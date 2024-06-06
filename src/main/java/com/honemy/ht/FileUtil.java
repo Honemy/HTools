@@ -1,6 +1,5 @@
 package com.honemy.ht;
 
-import com.honemy.ht.logger.ModernLogLevel;
 import com.honemy.ht.logger.ModernLogger;
 import com.honemy.ht.plugin.ModernPlugin;
 import lombok.AccessLevel;
@@ -12,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
 
 /**
  * Utility class for file operations.
@@ -54,7 +54,7 @@ public final class FileUtil {
 		try {
 			Files.write(file.toPath(), contents.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 		} catch (IOException e) {
-			ModernLogger.log(ModernLogLevel.WARNING, e, "Failed to write to file " + file.getPath());
+			ModernLogger.log(Level.WARNING, e, "Failed to write to file " + file.getPath());
 		}
 	}
 
@@ -78,7 +78,7 @@ public final class FileUtil {
 		try {
 			Files.createFile(filePath);
 		} catch (IOException e) {
-			ModernLogger.log(ModernLogLevel.WARNING, e, "Failed to create file " + filePath);
+			ModernLogger.log(Level.WARNING, e, "Failed to create file " + filePath);
 		}
 	}
 
@@ -91,7 +91,7 @@ public final class FileUtil {
 			try {
 				Files.createDirectory(dataFolderPath);
 			} catch (IOException e) {
-				ModernLogger.log(ModernLogLevel.WARNING, e, "Failed to create data folder " + dataFolderPath);
+				ModernLogger.log(Level.WARNING, e, "Failed to create data folder " + dataFolderPath);
 			}
 		}
 	}

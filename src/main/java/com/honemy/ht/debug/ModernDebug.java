@@ -3,7 +3,6 @@ package com.honemy.ht.debug;
 import com.honemy.ht.Common;
 import com.honemy.ht.FileUtil;
 import com.honemy.ht.exception.HtException;
-import com.honemy.ht.logger.ModernLogLevel;
 import com.honemy.ht.logger.ModernLogger;
 import com.honemy.ht.plugin.ModernPlugin;
 import lombok.NonNull;
@@ -12,6 +11,7 @@ import org.bukkit.Bukkit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Utility class for debugging operations.
@@ -48,11 +48,11 @@ public final class ModernDebug {
 			lines.add("----------------------------------------------------------------------------------------------");
 			lines.add(System.lineSeparator());
 
-			ModernLogger.log(ModernLogLevel.SEVERE, header + "! Please check your error.txt and report this issue with the information in that file. " + systemInfo);
+			ModernLogger.log(Level.SEVERE, header + "! Please check your error.txt and report this issue with the information in that file. " + systemInfo);
 			FileUtil.writeToFile(FileUtil.getOrCreateFile("error.txt"), String.join("\n", lines));
 		} catch (Throwable secondError) {
-			ModernLogger.log(ModernLogLevel.SEVERE, secondError, "Got error when saving error! Saving error:");
-			ModernLogger.log(ModernLogLevel.SEVERE, thrown, "Original error that is not saved:");
+			ModernLogger.log(Level.SEVERE, secondError, "Got error when saving error! Saving error:");
+			ModernLogger.log(Level.SEVERE, thrown, "Original error that is not saved:");
 		}
 	}
 

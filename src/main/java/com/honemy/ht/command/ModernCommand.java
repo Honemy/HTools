@@ -4,7 +4,6 @@ import com.honemy.ht.Common;
 import com.honemy.ht.Messenger;
 import com.honemy.ht.ReflectionUtil;
 import com.honemy.ht.exception.CommandException;
-import com.honemy.ht.logger.ModernLogLevel;
 import com.honemy.ht.logger.ModernLogger;
 import com.honemy.ht.remain.Remain;
 import org.bukkit.command.Command;
@@ -16,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * Abstract class representing a modern command.
@@ -93,7 +93,7 @@ public abstract class ModernCommand extends Command {
 			commandMap = Remain.getCommandMap();
 			registerMethod = Remain.getRegisterMethod(commandMap);
 		} catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException e) {
-			ModernLogger.log(ModernLogLevel.SEVERE, e, "Failed to initialize command: " + this.getName());
+			ModernLogger.log(Level.SEVERE, e, "Failed to initialize command: " + this.getName());
 		}
 	}
 
@@ -131,7 +131,7 @@ public abstract class ModernCommand extends Command {
 			if (this.sender instanceof Player) {
 				Messenger.error(this.sender, e.getMessages());
 			} else {
-				ModernLogger.log(ModernLogLevel.WARNING, e.getMessages());
+				ModernLogger.log(Level.WARNING, e.getMessages());
 			}
 		}
 	}
@@ -144,7 +144,7 @@ public abstract class ModernCommand extends Command {
 		try {
 			registerMethod.invoke(commandMap, this.getName(), this);
 		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
-			ModernLogger.log(ModernLogLevel.SEVERE, e, "Failed to register command: " + this.getName());
+			ModernLogger.log(Level.SEVERE, e, "Failed to register command: " + this.getName());
 		}
 	}
 
@@ -162,7 +162,7 @@ public abstract class ModernCommand extends Command {
 				}
 			}
 		} catch (Exception e) {
-			ModernLogger.log(ModernLogLevel.SEVERE, e, "Failed to unregister command: " + this.getName());
+			ModernLogger.log(Level.SEVERE, e, "Failed to unregister command: " + this.getName());
 		}
 	}
 

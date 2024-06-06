@@ -4,7 +4,6 @@ import com.honemy.ht.MinecraftVersion;
 import com.honemy.ht.MinecraftVersion.V;
 import com.honemy.ht.command.ModernCommand;
 import com.honemy.ht.debug.ModernDebug;
-import com.honemy.ht.logger.ModernLogLevel;
 import com.honemy.ht.logger.ModernLogger;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -12,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.logging.Level;
 
 /**
  * Abstract class representing a modern plugin.
@@ -56,7 +56,7 @@ public abstract class ModernPlugin extends JavaPlugin implements Listener {
 				instance = JavaPlugin.getPlugin(ModernPlugin.class);
 			} catch (IllegalStateException ex) {
 				if (Bukkit.getPluginManager().getPlugin("PlugMan") != null) {
-					ModernLogger.log(ModernLogLevel.SEVERE, "Failed to get instance of the plugin. If you reloaded using PlugMan, you need to restart the server.");
+					ModernLogger.log(Level.SEVERE, "Failed to get instance of the plugin. If you reloaded using PlugMan, you need to restart the server.");
 				}
 				throw ex;
 			}

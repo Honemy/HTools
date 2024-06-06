@@ -2,7 +2,6 @@ package com.honemy.ht;
 
 import com.honemy.ht.debug.ModernDebug;
 import com.honemy.ht.exception.HtException;
-import com.honemy.ht.logger.ModernLogLevel;
 import com.honemy.ht.logger.ModernLogger;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,7 @@ import lombok.NonNull;
 import org.bukkit.ChatColor;
 
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * Utility class for common operations.
@@ -44,7 +44,7 @@ public final class Common {
 		}
 
 		ModernDebug.printStackTrace(thrown);
-		ModernLogger.log(ModernLogLevel.SEVERE, message);
+		ModernLogger.log(Level.SEVERE, message);
 	}
 
 	public static String colorize(String message) {

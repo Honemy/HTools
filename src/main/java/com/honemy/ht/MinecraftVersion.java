@@ -1,6 +1,5 @@
 package com.honemy.ht;
 
-import com.honemy.ht.logger.ModernLogLevel;
 import com.honemy.ht.logger.ModernLogger;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -8,6 +7,7 @@ import org.bukkit.Bukkit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
 
 /**
  * Class representing a Minecraft version.
@@ -136,7 +136,7 @@ public final class MinecraftVersion {
 		try {
 			return Integer.compare(getCurrent().minorVersionNumber, version.minorVersionNumber);
 		} catch (final Throwable t) {
-			ModernLogger.log(ModernLogLevel.SEVERE, t, "An error occurred while comparing versions");
+			ModernLogger.log(Level.SEVERE, t, "An error occurred while comparing versions");
 			return 0;
 		}
 	}

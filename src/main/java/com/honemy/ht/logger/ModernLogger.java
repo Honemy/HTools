@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -32,7 +33,7 @@ public final class ModernLogger {
 	 * @param level    the level of the message.
 	 * @param messages the messages to log.
 	 */
-	public static void log(ModernLogLevel level, String... messages) {
+	public static void log(Level level, String... messages) {
 		log(level, null, null, null, messages);
 	}
 
@@ -43,7 +44,7 @@ public final class ModernLogger {
 	 * @param thrown   the exception to log.
 	 * @param messages the messages to log.
 	 */
-	public static void log(ModernLogLevel level, Throwable thrown, String... messages) {
+	public static void log(Level level, Throwable thrown, String... messages) {
 		log(level, null, null, thrown, messages);
 	}
 
@@ -55,7 +56,7 @@ public final class ModernLogger {
 	 * @param sourceMethod the source method of the message.
 	 * @param messages     the messages to log.
 	 */
-	public static void log(ModernLogLevel level, String sourceClass, String sourceMethod, String... messages) {
+	public static void log(Level level, String sourceClass, String sourceMethod, String... messages) {
 		log(level, sourceClass, sourceMethod, null, messages);
 	}
 
@@ -68,7 +69,7 @@ public final class ModernLogger {
 	 * @param thrown       the exception to log.
 	 * @param messages     the messages to log.
 	 */
-	public static void log(ModernLogLevel level, String sourceClass, String sourceMethod, Throwable thrown, String... messages) {
+	public static void log(Level level, String sourceClass, String sourceMethod, Throwable thrown, String... messages) {
 		for (String message : messages) {
 			logInternal(level, prefix, sourceClass, sourceMethod, message, thrown);
 		}
@@ -80,7 +81,7 @@ public final class ModernLogger {
 	 * @param level    the level of the message.
 	 * @param messages the messages to log.
 	 */
-	public static void logNoPrefix(ModernLogLevel level, String... messages) {
+	public static void logNoPrefix(Level level, String... messages) {
 		logNoPrefix(level, null, null, null, messages);
 	}
 
@@ -91,7 +92,7 @@ public final class ModernLogger {
 	 * @param thrown   the exception to log.
 	 * @param messages the messages to log.
 	 */
-	public static void logNoPrefix(ModernLogLevel level, Throwable thrown, String... messages) {
+	public static void logNoPrefix(Level level, Throwable thrown, String... messages) {
 		logNoPrefix(level, null, null, thrown, messages);
 	}
 
@@ -103,7 +104,7 @@ public final class ModernLogger {
 	 * @param sourceMethod the source method of the message.
 	 * @param messages     the messages to log.
 	 */
-	public static void logNoPrefix(ModernLogLevel level, String sourceClass, String sourceMethod, String... messages) {
+	public static void logNoPrefix(Level level, String sourceClass, String sourceMethod, String... messages) {
 		logNoPrefix(level, sourceClass, sourceMethod, null, messages);
 	}
 
@@ -116,7 +117,7 @@ public final class ModernLogger {
 	 * @param thrown       the exception to log.
 	 * @param messages     the messages to log.
 	 */
-	public static void logNoPrefix(ModernLogLevel level, String sourceClass, String sourceMethod, Throwable thrown, String... messages) {
+	public static void logNoPrefix(Level level, String sourceClass, String sourceMethod, Throwable thrown, String... messages) {
 		for (String message : messages) {
 			logInternal(level, null, sourceClass, sourceMethod, message, thrown);
 		}
@@ -132,19 +133,19 @@ public final class ModernLogger {
 	 * @param message      the message to log.
 	 * @param thrown       the exception to log.
 	 */
-	private static void logInternal(ModernLogLevel level, String prefix, String sourceClass, String sourceMethod, String message, Throwable thrown) {
+	private static void logInternal(Level level, String prefix, String sourceClass, String sourceMethod, String message, Throwable thrown) {
 		String prefixedMessage = (prefix == null ? "" : prefix) + message;
 		if (sourceClass == null || sourceMethod == null) {
 			if (thrown == null) {
-				LOGGER.log(level.getLevel(), prefixedMessage);
+				LOGGER.log(level, prefixedMessage);
 			} else {
-				LOGGER.log(level.getLevel(), prefixedMessage, thrown);
+				LOGGER.log(level, prefixedMessage, thrown);
 			}
 		} else {
 			if (thrown == null) {
-				LOGGER.logp(level.getLevel(), sourceClass, sourceMethod, prefixedMessage);
+				LOGGER.logp(level, sourceClass, sourceMethod, prefixedMessage);
 			} else {
-				LOGGER.logp(level.getLevel(), sourceClass, sourceMethod, prefixedMessage, thrown);
+				LOGGER.logp(level, sourceClass, sourceMethod, prefixedMessage, thrown);
 			}
 		}
 	}
