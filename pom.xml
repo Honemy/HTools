@@ -65,6 +65,7 @@
                 <version>3.7.0</version>
                 <configuration>
                     <doclint>none</doclint>
+                    <source>${java.version}</source>
                 </configuration>
                 <executions>
                     <execution>
