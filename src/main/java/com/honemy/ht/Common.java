@@ -48,6 +48,9 @@ public final class Common {
 	}
 
 	public static String colorize(String message) {
+		if (message == null || "none".equals(message))
+			return "";
+
 		return ChatColor.translateAlternateColorCodes('&', message);
 	}
 

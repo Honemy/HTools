@@ -20,7 +20,7 @@ public final class Messenger {
 	 */
 	@Setter
 	@Getter
-	private String successPrefix = "&8&l[&2&l✔&8&l]&7 ";
+	private String successPrefix = "&8&l[&2&l+&8&l]&7 ";
 
 	/**
 	 * The prefix send while sending warning message
@@ -34,7 +34,7 @@ public final class Messenger {
 	 */
 	@Setter
 	@Getter
-	private String errorPrefix = "&8&l[&4&l✕&8&l]&c ";
+	private String errorPrefix = "&8&l[&4&lX&8&l]&c ";
 
 	/**
 	 * The prefix send while sending questions
