@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.bukkit.ChatColor;
 
-import java.util.*;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -51,48 +51,5 @@ public final class Common {
 			return "";
 
 		return ChatColor.translateAlternateColorCodes('&', message);
-	}
-
-	/**
-	 * Converts a Collection of Strings to an array.
-	 * If the input collection is null, returns an empty array.
-	 *
-	 * @param array The Collection of Strings to convert.
-	 * @return The converted array of Strings.
-	 */
-	public static String[] toArray(Collection<String> array) {
-		return array == null ? new String[0] : array.toArray(new String[0]);
-	}
-
-	/**
-	 * Converts an array to an ArrayList.
-	 * If the input array is null, returns an empty ArrayList.
-	 *
-	 * @param array The array to convert.
-	 * @return The converted ArrayList.
-	 */
-	@SafeVarargs
-	public static <T> ArrayList<T> toList(T... array) {
-		return array == null ? new ArrayList<>() : new ArrayList<>(Arrays.asList(array));
-	}
-
-	/**
-	 * Converts an Iterable to a List.
-	 * If the input Iterable is null, returns an empty List.
-	 * Null elements in the Iterable are not added to the List.
-	 *
-	 * @param it The Iterable to convert.
-	 * @return The converted List.
-	 */
-	public static <T> List<T> toList(Iterable<T> it) {
-		final List<T> list = new ArrayList<>();
-
-		if (it != null)
-			it.forEach(el -> {
-				if (el != null)
-					list.add(el);
-			});
-
-		return list;
 	}
 }
